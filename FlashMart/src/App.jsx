@@ -1,9 +1,13 @@
 import { useState } from 'react';
 import LoginModal from './LoginModal';
+import SignUpModal from "./SignUpModal";
+
+
 import './App.css';
 
 function App() {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const [isSignUpOpen, setIsSignUpOpen] = useState(false);
 
   return (
     <div className="flex justify-center items-center h-screen bg-gray-100">
@@ -16,9 +20,22 @@ function App() {
       </button>
 
       {/* Login modal */}
-      <LoginModal
+       <LoginModal
         isOpen={isLoginOpen}
         onClose={() => setIsLoginOpen(false)}
+        onSwitchToSignUp={() => {
+          setIsLoginOpen(false);
+          setIsSignUpOpen(true);
+        }}
+      />
+      {/* SignUp Modal */}
+      <SignUpModal
+        isOpen={isSignUpOpen}
+        onClose={() => setIsSignUpOpen(false)}
+        onSwitchToLogin={() => {
+          setIsSignUpOpen(false);
+          setIsLoginOpen(true);
+        }}
       />
     </div>
   );

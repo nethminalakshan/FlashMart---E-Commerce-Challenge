@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-
-export default function LoginModal({ isOpen, onClose }) {
+import SignUpModal from "./SignUpModal";
+export default function LoginModal({ isOpen, onClose, onSwitchToSignUp }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -75,12 +75,19 @@ export default function LoginModal({ isOpen, onClose }) {
 
           {/* Links */}
           <div className="mt-4 flex justify-between text-sm text-blue-600">
-            <Link to="/forgot-password" className="hover:underline">
-              Forgotten Account?
-            </Link>
-            <Link to="/signup" className="hover:underline">
-              New User? Register
-            </Link>
+           <Link to="/forgot-password" className="hover:underline">
+    Forgotten Account?
+  </Link>
+            <a
+    href="#"
+    onClick={(e) => {
+      e.preventDefault();
+      onSwitchToSignUp();
+    }}
+    className="hover:underline"
+  >
+    New User? Register
+  </a>
           </div>
         </div>
       </div>
