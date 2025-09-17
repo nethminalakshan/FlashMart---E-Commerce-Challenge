@@ -94,3 +94,4 @@ export default function LoginModal({ isOpen, onClose, onSwitchToSignUp }) {
     </div>
   );
 }
+

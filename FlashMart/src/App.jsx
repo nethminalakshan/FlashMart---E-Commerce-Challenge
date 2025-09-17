@@ -4,12 +4,15 @@ import SignUpModal from "./SignUpModal";
 
 
 import './App.css';
+import Header from './Header';
 
 function App() {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isSignUpOpen, setIsSignUpOpen] = useState(false);
 
   return (
+    <>
+    <Header/>
     <div className="flex justify-center items-center h-screen bg-gray-100">
       {/* Button to open login modal */}
       <button
@@ -38,6 +41,7 @@ function App() {
         }}
       />
     </div>
+    </>
   );
 }
 
