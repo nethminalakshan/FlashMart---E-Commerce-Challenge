@@ -1,4 +1,4 @@
 package com.FlashMart.FlashMart_BackEnd.repository;
 
-public class ProductRepository {
+public interface ProductRepository {
 }
