@@ -1,10 +1,13 @@
+// src/App.jsx
 import { useState } from 'react';
-import LoginModal from './LoginModal';
-import SignUpModal from "./SignUpModal";
-
+import { Routes, Route } from 'react-router-dom';
+import Header from './Header';
+import CategoriesPage from './Pages/CategoriesPage';
+import CategoryPage from './Pages/CategoryPage';
+import LoginModal from './pages/LoginModal';
+import SignUpModal from './pages/SignUpModal';
 
 import './App.css';
-import Header from './Header';
 
 function App() {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
@@ -12,18 +15,21 @@ function App() {
 
   return (
     <>
-    <Header/>
-    <div className="flex justify-center items-center h-screen bg-gray-100">
-      {/* Button to open login modal */}
-      <button
-        onClick={() => setIsLoginOpen(true)}
-        className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
-      >
-        Open Login
-      </button>
+      {/* Header stays on top */}
+      <Header
+        onLoginClick={() => setIsLoginOpen(true)} // opens login modal
+      />
 
-      {/* Login modal */}
-       <LoginModal
+      {/* Main content area */}
+      <main className="min-h-screen bg-gray-100 p-6">
+        <Routes>
+          <Route path="/" element={<CategoriesPage />} />
+          <Route path="/categories/:categoryName" element={<CategoryPage />} />
+        </Routes>
+      </main>
+
+      {/* Login Modal */}
+      <LoginModal
         isOpen={isLoginOpen}
         onClose={() => setIsLoginOpen(false)}
         onSwitchToSignUp={() => {
@@ -31,6 +37,7 @@ function App() {
           setIsSignUpOpen(true);
         }}
       />
+
       {/* SignUp Modal */}
       <SignUpModal
         isOpen={isSignUpOpen}
@@ -40,7 +47,6 @@ function App() {
           setIsLoginOpen(true);
         }}
       />
-    </div>
     </>
   );
 }
